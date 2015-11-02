@@ -1,8 +1,8 @@
 
 public class App {
 
-	public static void main(String[] args) {
-		Supermarket hannaford = new Supermarket(10, 3);
+	public static void main(String[] args) throws Exception {
+		Supermarket hannaford = new Supermarket();
 		hannaford.addToStock(new Item(100, "organic carrot",  0.99, 121243));
 		hannaford.addToStock(new Item(50,  "organic bread",   3.99, 314543));
 		hannaford.addToStock(new Item(50,  "bread",           0.99, 316643));
@@ -26,10 +26,16 @@ public class App {
 		shopper2.addToShoppingList(new Item(1, "fish"));
 		shopper2.addToShoppingList(new Item(3, "apple"));
 		shopper2.addToShoppingList(new Item(1, "banana"));
+		shopper2.addToShoppingList(new Item(1, "steak"));
 		
 		Cart cart1 = shopper1.fillCart(hannaford);
 		Cart cart2 = shopper2.fillCart(hannaford);
 		
+		Cashier cashier = hannaford.getCashier();
+		String receipt1 = cashier.checkOut(cart1);
+		String receipt2 = cashier.checkOut(cart2);
+		
+		System.out.print(receipt1);
 	}
 
 }

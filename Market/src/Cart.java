@@ -17,4 +17,8 @@ public class Cart {
 	public Item removeOneItem(){
 		return shoppingCart.pop();
 	}
+	
+	public Boolean isEmpty(){
+		return shoppingCart.empty();
+	}
 }

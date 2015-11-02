@@ -21,32 +21,47 @@ public class Shopper {
 			throw new Exception("Not enough cash in wallet!");
 	}
 
-	public Cart fillCart(Supermarket market) {
+	public Cart fillCart(Supermarket market) throws Exception {
 		Enumeration<Item> iterator = shoppingList.elements();
 		while (iterator.hasMoreElements()) {
 			Item item = iterator.nextElement();
 			Vector<Item> foundItems = market.searchItem(item);
-			Item selectedItem = getPreferredItem(foundItems);
-			cart.add(selectedItem);
+			if (!foundItems.isEmpty()) {
+				Item selectedItem = getPreferredItem(foundItems, item);
+				cart.add(selectedItem);
+			}
 		}
 		return cart;
 	}
 
-	private Item getPreferredItem(Vector<Item> itemsFound) {
-		Item preferredItem;
+	private Item getPreferredItem(Vector<Item> itemsFound, Item item)
+			throws Exception {
+		Item preferredItem = itemsFound.firstElement();
 		Enumeration<Item> iterator = itemsFound.elements();
 		while (iterator.hasMoreElements()) {
-			Item item = iterator.nextElement();
+			double lowestPrice = 1e10;
+			Item currentItem = iterator.nextElement();
+			String description = currentItem.getDescription().toLowerCase();
 			switch (shopperType) {
 			case Price:
-
+				if (currentItem.getPrice() < lowestPrice) {
+					lowestPrice = currentItem.getPrice();
+					preferredItem = currentItem;
+				}
 				break;
 			case Quality:
-				if
+				if (description.contains("organic")
+						|| description.contains("grass fed")) {
+					preferredItem = currentItem;
+					break;
+				}
 				break;
 			}
 		}
-		return preferredItem;
+
+		Item p = preferredItem;
+		return new Item(item.getQuantity(), p.getDescription(), p.getPrice(),
+				p.getBarcode());
 	}
 
 	public Vector<Item> getShoppingList() {
