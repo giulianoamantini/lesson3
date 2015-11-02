@@ -6,12 +6,19 @@ public class Item {
 	private float price;
 	private int barcode;
 	
-	//constructor
+	//constructors
 	public Item(int q, String d, float p, int b){
 		setQuantity(q);
 		setDescription(d);
 		setPrice(p);
 		setBarcode(b);
+	}
+	
+	public Item(int q, String d){
+		setQuantity(q);
+		setDescription(d);
+		setPrice(0);
+		setBarcode(0);
 	}
 
 	public void addQuantity(int q) throws Exception{
