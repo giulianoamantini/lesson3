@@ -3,6 +3,16 @@ public class App {
 
 	public static void main(String[] args) {
 		Supermarket hannaford = new Supermarket(10, 3);
+		hannaford.addToStock(new Item(100, "organic carrot",  0.99, 121243));
+		hannaford.addToStock(new Item(50,  "organic bread",   3.99, 314543));
+		hannaford.addToStock(new Item(50,  "bread",           0.99, 316643));
+		hannaford.addToStock(new Item(20,  "fish",            7.39, 985443));
+		hannaford.addToStock(new Item(30,  "grass fed steak", 9.99, 265943));
+		hannaford.addToStock(new Item(50,  "steak",           6.79, 915643));
+		hannaford.addToStock(new Item(40,  "organic salad",   1.99, 345743));
+		hannaford.addToStock(new Item(400, "pasta",           1.09, 176343));
+		hannaford.addToStock(new Item(70,  "apple",           1.09, 176343));
+		hannaford.addToStock(new Item(100, "carrot",          0.59, 176343));
 		
 		Shopper shopper1 = new Shopper(2000, ShopperType.Quality);
 		Shopper shopper2 = new Shopper(800, ShopperType.Price);
@@ -17,8 +27,8 @@ public class App {
 		shopper2.addToShoppingList(new Item(3, "apple"));
 		shopper2.addToShoppingList(new Item(1, "banana"));
 		
-		shopper1.fillCart(hannaford);
-		shopper2.fillCart(hannaford);
+		Cart cart1 = shopper1.fillCart(hannaford);
+		Cart cart2 = shopper2.fillCart(hannaford);
 		
 	}
 

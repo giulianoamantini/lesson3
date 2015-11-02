@@ -3,11 +3,11 @@ public class Item {
 	// private members
 	private int quantity;
 	private String description;
-	private float price;
+	private double price;
 	private int barcode;
 	
 	//constructors
-	public Item(int q, String d, float p, int b){
+	public Item(int q, String d, double p, int b){
 		setQuantity(q);
 		setDescription(d);
 		setPrice(p);
@@ -48,11 +48,11 @@ public class Item {
 		this.description = description;
 	}
 
-	public float getPrice() {
+	public double getPrice() {
 		return price;
 	}
 
-	public void setPrice(float price) {
+	public void setPrice(double price) {
 		this.price = price;
 	}
 
