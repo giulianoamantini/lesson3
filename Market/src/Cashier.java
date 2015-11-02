@@ -6,9 +6,9 @@ public class Cashier {
 		while (!cart.isEmpty()){
 			Item item = cart.removeOneItem();
 			total += item.getPrice();
-			receipt += item.getDescription() + " " + item.getBarcode() + " " + item.getPrice() + "\n"; 
+			receipt += String.format("%20s......%6s.......$%5s\n", item.getDescription(), item.getBarcode(), item.getPrice()); 
 		}
-		receipt += "total " + total; 
+		receipt += String.format("TOTAL%40s\n", String.format("$%s", total)); 
 		return receipt;
 	}
 }
